@@ -10,9 +10,13 @@ I have been looking at various published docker files on registry.hub.docker.com
 
 So the sequence would look like this:
 
-    docker build -t maiatoday/androidJenkins java7/Dockerfile
-    docker build -t maiatoday/androidJenkins androidSDK/Dockerfile
-    docker build -t maiatoday/androidJenkins jenkins/Dockerfile
+    docker build -t maiatoday/java7 java7
+    docker build -t maiatoday/androidSDK androidSDK
+    docker build -t maiatoday/jenkins jenkins
+
+Then when you are done run up the final machine like this:
+    docker run -d -P maiatoday/jenkins 
+And then use docker ps to see the port to connect to in the browser.
     
 I drew some inspiration from these docker files https://registry.hub.docker.com/u/oreomitch/jenkins-android/dockerfile
 https://registry.hub.docker.com/repos/kemitix/

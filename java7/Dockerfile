@@ -3,7 +3,7 @@
 #
 
 FROM ubuntu:14.04
-MAINTAINER maiatoday &lt;maiatoday@gmail.com&gt;
+MAINTAINER maiatoday <maiatoday@gmail.com>
 
 #with thanks to Paul Cambell &lt;pcampbell@kemitix.net&gt;
 
@@ -26,7 +26,7 @@ RUN echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true 
 
 RUN apt-get install -y oracle-java7-installer
 
-RUN echo &quot;\n\
+RUN echo "\n\
 export JAVA_HOME=/usr/lib/jvm/java-7-oracle/\n\
-export PATH=\$JAVA_HOME/bin:\$PATH&quot; \
-	&gt;&gt; /etc/profile
+export PATH=\$JAVA_HOME/bin:\$PATH" \
+	>> /etc/profile

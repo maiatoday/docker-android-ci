@@ -3,9 +3,9 @@
 #
 
 FROM maiatoday/java7
-MAINTAINER maiatoday &lt;maiatoday@gmail.com&gt;
+MAINTAINER maiatoday <maiatoday@gmail.com>;
 
-#with thanks to Paul Cambell &lt;pcampbell@kemitix.net&gt;
+#with thanks to Paul Cambell <pcampbell@kemitix.net>
 
 #
 # Contains:
@@ -67,13 +67,13 @@ RUN apt-get install -y \
 		lib32bz2-1.0
 
 # Update path to include Build-tools
-RUN echo &quot;\n\
+RUN echo "\n\
 export ANDROID_HOME=/opt/android-sdk-linux\n\
 export PATH=\$PATH:\
 \$ANDROID_HOME/tools:\
 \$ANDROID_HOME/build-tools/19.1.0:\
-\$ANDROID_HOME/platform-tools&quot; \
-	&gt;&gt; /etc/profile
+\$ANDROID_HOME/platform-tools" \
+	>> /etc/profile
 
-# now that we&#39;ve populated the directory, export it as a volume
-VOLUME [&quot;/opt/android-sdk-linux&quot;]
+# now that we've populated the directory, export it as a volume
+VOLUME ["opt/android-sdk-linux"]
