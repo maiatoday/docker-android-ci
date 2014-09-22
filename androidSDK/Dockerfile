@@ -66,6 +66,16 @@ RUN apt-get install -y \
 		lib32ncurses5 \
 		lib32bz2-1.0
 
+# Install NDK
+ENV NDK_ROOT /opt/android-ndk-r10
+RUN wget --quiet http://dl.google.com/android/ndk/android-ndk64-r10-linux-x86_64.tar.bz2
+RUN tar -xf android-ndk-r9d-linux-x86_64.tar.bz2
+
+ENV PATH /installs/android-toolchain/bin:${NDK_ROOT}:$PATH
+RUN  ${NDK_ROOT}/build/tools/make-standalone-toolchain.sh --platform=android-14 --arch=arm --install-dir=/installs/android-toolchain --system=linux-x86_64 --ndk-dir=${NDK_ROOT}
+ENV PATH ${NDK_ROOT}:$PATH
+ENV ANDROID_NDK_HOME ${NDK_ROOT}
+
 # Update path to include Build-tools
 RUN echo "\n\
 export ANDROID_HOME=/opt/android-sdk-linux\n\

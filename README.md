@@ -10,9 +10,9 @@ I have been looking at various published docker files on registry.hub.docker.com
 
 So the sequence would look like this:
 
-    docker build -t maiatoday/java7 java7
-    docker build -t maiatoday/androidSDK androidSDK
-    docker build -t maiatoday/jenkins jenkins
+    docker build -t maiatoday/java7 java7/
+    docker build -t maiatoday/androidSDK androidSDK/
+    docker build -t maiatoday/jenkins jenkins/
 
 Then when you are done run up the final machine like this:
     docker run -d -P maiatoday/jenkins 
