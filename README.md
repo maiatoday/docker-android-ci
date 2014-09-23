@@ -13,6 +13,8 @@ So the sequence would look like this:
     docker build -t maiatoday/java7 java7/
     docker build -t maiatoday/androidSDK androidSDK/
     docker build -t maiatoday/jenkins jenkins/
+    docker build -t maiatoday/jenkins_cmake jenkins_cmake/
+    docker build -t maiatoday/jenkins_gradle jenkins_gradle/
 
 Then when you are done run up the final machine like this:
     docker run -d -P maiatoday/jenkins 
