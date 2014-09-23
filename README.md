@@ -1,20 +1,29 @@
-The goal is to make a series of Dockerfile files to build up a CI machine. Ideally later images can build on earlier images so the plan is to make an image with the latest android SDK and emulator. Then to add to this gradle and then git. That image will then be able to pull from a git repo and build and test a project. This will be the base image which can be used to add a ci server such as jenkins or a teamcity agent.
-
-* java7/Dockerfile (Java7) or (openjdk7?)
-* androidSDK/Dockerfile (androidSDK git)
-* gradle/Dockerfile    -- maybe this one can be skipped because the build wrapper gets gradle
-* jenkins/Dockerfile 
+This repo contains various Dockerfiles used to mess around with making a ci servier.
 
 
 I have been looking at various published docker files on registry.hub.docker.com in the hope of finding some version of this that is usable to me.
 
-So the sequence would look like this:
+A jenkins server that can build c++ with cmake or gradle uses this sequence to build an image derived from the official jenkins build:
+
+    docker build -t maiatoday/jenkins_cmake jenkins_cmake/
+    docker build -t maiatoday/jenkins_gradle jenkins_gradle/
+
+Set up a directory for the volume and run this image like this for the first time:
+    mkdir /home/username/data/jenkins -p
+    chown 102 /home/username/data/jenkins
+    docker run --name myjenkins -p 8080:8080 -v /home/maia/data/jenkins:/var/jenkins_home maiatoday/jenkins_cmake
+
+Stop and start the image like this:
+    docker stop myjenkins
+    docker start myjenkins
+
+The android ci is still a work in progress
+
+So the sequence could look like this:
 
     docker build -t maiatoday/java7 java7/
     docker build -t maiatoday/androidSDK androidSDK/
-    docker build -t maiatoday/jenkins jenkins/
-    docker build -t maiatoday/jenkins_cmake jenkins_cmake/
-    docker build -t maiatoday/jenkins_gradle jenkins_gradle/
+    docker build -t maiatoday/jenkins jenkins/ #I should try to use the official jenkins build
 
 Then when you are done run up the final machine like this:
     docker run -d -P maiatoday/jenkins 
