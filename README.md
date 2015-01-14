@@ -32,9 +32,29 @@ So the sequence could look like this:
 ```
 Then when you are done run up the final machine like this:
 ```
-    docker run -d -P maiatoday/jenkins 
+    docker run -d -P maiatoday/jenkins
 ```
 And then use docker ps to see the port to connect to in the browser.
-    
+
 I drew some inspiration from these docker files https://registry.hub.docker.com/u/oreomitch/jenkins-android/dockerfile
 https://registry.hub.docker.com/repos/kemitix/
+
+----
+## Some info on the android jenkins slave
+It is based off this image https://registry.hub.docker.com/u/evarga/jenkins-slave/dockerfile/
+Also it can run with the jenkins docker plugin: https://wiki.jenkins-ci.org/display/JENKINS/Docker+Plugin
+
+This image has an ssh port at 22. It also has an android install sitting in /opt/android-sdk-linux.
+
+To build the image from the docker file
+
+```
+docker build -t maiatoday/jenkins-slave-android jenkins-slave-android/
+docker run --name jenkins-slave-android -v /home/username/android-sdk:/opt/android-sdk-linux maiatoday/jenkins-slave-android
+```
+
+
+To interact with the image directly
+```
+docker run -i -t maiatoday/jenkins-slave-android /bin/bash
+```
