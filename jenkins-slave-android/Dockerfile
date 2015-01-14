@@ -59,22 +59,21 @@ ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH $PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 # Install NDK
-# ENV NDK_ROOT /opt/android-ndk-r10
-#RUN curl "http://dl.google.com/android/ndk/android-ndk64-r10-linux-x86_64.tar.bz2" | tar xz && mv android-ndk-r10 ${NDK_ROOT}
-
-#http://dl.google.com/android/ndk/android-ndk-r10d-linux-x86.bin
-#http://dl.google.com/android/ndk/android-ndk-r10d-linux-x86_64.bin
-#ENV PATH /installs/android-toolchain/bin:${NDK_ROOT}:$PATH
-#RUN  ${NDK_ROOT}/build/tools/make-standalone-toolchain.sh --platform=android-14 --arch=arm --install-dir=/installs/android-toolchain --system=linux-x86_64 --ndk-dir=${NDK_ROOT}
-#ENV PATH ${NDK_ROOT}:$PATH
-#ENV ANDROID_NDK_HOME ${NDK_ROOT}
+ENV NDK_ROOT /opt/android-ndk-r10d
+RUN wget http://dl.google.com/android/ndk/android-ndk-r10d-linux-x86_64.bin
+RUN chmod a+x android-ndk-r10d-linux-x86_64.bin
+RUN ./android-ndk-r10d-linux-x86_64.bin
+RUN rm ./android-ndk-r10d-linux-x86_64.bin
+ENV PATH ${NDK_ROOT}:$PATH
+ENV ANDROID_NDK_HOME ${NDK_ROOT}
 
 # Update path to include Build-tools
 RUN echo "\n\
 export ANDROID_HOME=/opt/android-sdk-linux\n\
 export PATH=\$PATH:\
 \$ANDROID_HOME/tools:\
-\$ANDROID_HOME/platform-tools" \
+\$ANDROID_HOME/platform-tools"\n\
+\export ANDROID_NDK_HOME=\$ANDROID_NDK_HOME\
 	>> /etc/profile
 
 # now that we've populated the directory, export it as a volume
