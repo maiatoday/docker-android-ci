@@ -58,3 +58,10 @@ To interact with the image directly
 ```
 docker run -i -t maiatoday/jenkins-slave-android /bin/bash
 ```
+
+## Nodejs docker file
+
+```
+docker build -t maiatoday/nodejs-simple nodejs/
+docker run --name mynodejs -d -v /home/username/projectroot:/project maiatoday/nodejs-simple cd /project && npm install
+```
