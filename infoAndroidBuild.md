@@ -35,3 +35,5 @@ https://docs.docker.com/installation
     http://blog.zuehlke.com/en/configure-your-android-project-on-jenkins/
     http://www.vogella.com/tutorials/Jenkins/article.html
     https://github.com/jenkinsci/docker
+
+    https://developer.github.com/guides/managing-deploy-keys/
